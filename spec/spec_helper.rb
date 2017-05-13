@@ -13,7 +13,21 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'capybara/dsl'
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :truncation
+
 RSpec.configure do |config|
+  config.include Capybara::DSL
+
+  config.before(:all) do
+    DatabaseCleaner.clean 
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean 
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
