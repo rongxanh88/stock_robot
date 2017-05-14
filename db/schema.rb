@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170514032649) do
+ActiveRecord::Schema.define(version: 20170514033456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 20170514032649) do
     t.bigint "historical_date_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "open"
+    t.float "high"
+    t.float "close"
+    t.bigint "volume"
+    t.bigint "avg_volume"
+    t.float "week_52_high"
+    t.float "week_52_low"
     t.index ["historical_date_id"], name: "index_trading_data_on_historical_date_id"
     t.index ["ticker_id"], name: "index_trading_data_on_ticker_id"
   end
