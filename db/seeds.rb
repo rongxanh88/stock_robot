@@ -11,9 +11,17 @@ class Seed
   def self.single_quote_request
     file = "db/csv/complete_stock_ticker.csv"
     quoter = Quote.new
+    counter = 1
+    limit = 5
     CSV.foreach file, headers: true, header_converters: :symbol do |row|
       json = quoter.get_quote(row[:symbol])
       binding.pry
+
+      first_quote = json["quotes"]["quote"]
+      
+
+      counter += 1
+      break if counter > limit
     end
     
   end

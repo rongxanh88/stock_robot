@@ -10,13 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170514033456) do
+ActiveRecord::Schema.define(version: 20170514195448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "historical_dates", force: :cascade do |t|
     t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "industries", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sectors", force: :cascade do |t|
+    t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,6 +45,10 @@ ActiveRecord::Schema.define(version: 20170514033456) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "security_id"
+    t.bigint "sector_id"
+    t.bigint "industry_id"
+    t.index ["industry_id"], name: "index_tickers_on_industry_id"
+    t.index ["sector_id"], name: "index_tickers_on_sector_id"
     t.index ["security_id"], name: "index_tickers_on_security_id"
   end
 
@@ -52,6 +68,8 @@ ActiveRecord::Schema.define(version: 20170514033456) do
     t.index ["ticker_id"], name: "index_trading_data_on_ticker_id"
   end
 
+  add_foreign_key "tickers", "industries"
+  add_foreign_key "tickers", "sectors"
   add_foreign_key "tickers", "securities"
   add_foreign_key "trading_data", "historical_dates"
   add_foreign_key "trading_data", "tickers"
