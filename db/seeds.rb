@@ -15,10 +15,11 @@ class Seed
     limit = 5
     CSV.foreach file, headers: true, header_converters: :symbol do |row|
       json = quoter.get_quote(row[:symbol])
-      binding.pry
-
       first_quote = json["quotes"]["quote"]
-      
+
+      binding.pry
+      ticker = Ticker.create!(symbol: row[:symbol], description: row[:name])
+
 
       counter += 1
       break if counter > limit

@@ -4,5 +4,5 @@ class Ticker < ApplicationRecord
   has_one :industry
   has_many :trading_data
 
-  validates :symbol, :text, presence: true
+  validates :symbol, :description, presence: true
 end
