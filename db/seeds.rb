@@ -1,7 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'pry'
+require 'csv'
+require './lib/quote'
+require './app/models/ticker'
+require './app/models/security'
+require './app/models/historical_date'
+require './app/models/trading_data'
+
+class Seed
+
+  def self.single_quote_request
+    file = "db/csv/complete_stock_ticker.csv"
+    quoter = Quote.new
+    CSV.foreach file, headers: true, header_converters: :symbol do |row|
+      json = quoter.get_quote(row[:symbol])
+      binding.pry
+    end
+    
+  end
+
+end
+
+Seed.single_quote_request
