@@ -1,4 +1,4 @@
 class Security < ApplicationRecord
-  # belongs_to :tickers
+  has_many :tickers
   validates :security_type, presence: true
 end

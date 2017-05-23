@@ -1,4 +1,4 @@
 class Sector < ApplicationRecord
-  # belongs_to :tickers
+  has_many :tickers
   validates :name, presence: true
 end
