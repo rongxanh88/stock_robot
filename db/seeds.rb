@@ -23,15 +23,13 @@ class Seed
     ticker_symbols = []
 
     CSV.foreach file, headers: true, header_converters: :symbol do |row|
-      # sector = Sector.find_or_create_by(name: row[:sector])
-      # industry = Industry.find_or_create_by(name: row[:industry])
+      sector = Sector.find_or_create_by(name: row[:sector])
+      industry = Industry.find_or_create_by(name: row[:industry])
       ticker = Ticker.create!(symbol: row[:symbol], description: row[:name])
-      ticker.
 
       ticker.update_attributes(
         sector_id: sector.id, industry_id: industry.id
         )
-
       ticker_symbols.push(row[:symbol])
 
       if ticker_symbols.size >= 150
@@ -72,34 +70,31 @@ class Seed
   end
 
   def self.make_json_request(ticker_symbols="")
-      quoter = Quote.new
-      json = quoter.get_quote(ticker_symbols)
-      binding.pry
-      quotes = json["quotes"]["quote"]
-
-      fill_security_table(quotes)
-
-      
-      
+    quoter = Quote.new
+    json = quoter.get_quote(ticker_symbols)
+    quotes = json["quotes"]["quote"]
+    quotes.each do |quote|
+      fill_tables(quote)
+    end
   end
 
   def self.symbols_to_string(symbols=[])
     symbols.join(",")
   end
 
-  def fill_security_table(quote)
-    binding.pry
+  def self.fill_tables(quote)
     security = Security.find_or_create_by(
         security_type: quote["type"]
         )
-  end
-
-  def update_ticker_table(quote)
-    binding.pry
-    ticker = Ticker.find_by
-    ticker.update_attributes(
-        security_id: security.id, sector_id: sector.id, industry_id: industry.id
-        )
+    ticker = Ticker.find_by(symbol: quote["symbol"])
+    ticker.update_attributes(security_id: security.id)
+    date = HistoricalDate.find_or_create_by(date: DateTime.now.to_date)
+    trading_data = TradingData.create!(
+      ticker_id: ticker.id, historical_date_id: date.id, open: quote["open"],
+      high: quote["high"], close: quote["close"], volume: quote["volume"],
+      avg_volume: quote["average_volume"], week_52_high: quote["week_52_high"],
+      week_52_low: quote["week_52_low"]
+      )
   end
 
 end
