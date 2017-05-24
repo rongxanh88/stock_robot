@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170514195448) do
+ActiveRecord::Schema.define(version: 20170524173840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(version: 20170514195448) do
     t.float "week_52_low"
     t.index ["historical_date_id"], name: "index_trading_data_on_historical_date_id"
     t.index ["ticker_id"], name: "index_trading_data_on_ticker_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email_address"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "tickers", "industries"
