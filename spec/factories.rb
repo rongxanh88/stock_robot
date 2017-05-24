@@ -23,10 +23,6 @@ FactoryGirl.define do
   end
 
   factory :ticker do
-    association :security, factory: :security
-    association :sector, factory: :sector
-    association :industry, factory: :industry
-
     sequence :symbol do |n|
       "AA#{n}"
     end
