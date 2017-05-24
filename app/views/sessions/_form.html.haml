@@ -1,4 +1,4 @@
-.user.form
+.session.form
   = form_for (@user) do |f|
     %p
     = f.label :email_address
@@ -9,5 +9,4 @@
     %br
     = f.text_field :password
     %br
-    = f.submit "Create Account"
-
+    = f.submit "Login", method: "post"

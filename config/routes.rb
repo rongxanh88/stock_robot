@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   get '/home', to: 'sessions#home'
   get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
 end

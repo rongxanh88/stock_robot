@@ -7,8 +7,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    - if flash.now[:message]
-      .flash_message
-        %p
-        = flash.now[:message]
+    - flash.each do |key, value|
+      .flash
+        = value
     = yield
