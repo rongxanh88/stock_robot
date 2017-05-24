@@ -1,0 +1,13 @@
+.user.form
+  = form_for (@user) do |f|
+    %p
+    = f.label :email_address
+    %br
+    = f.text_field :email_address
+    %p
+    = f.label :password_digest
+    %br
+    = f.text_field :password_digest
+    %br
+    = f.submit "Create Account"
+
