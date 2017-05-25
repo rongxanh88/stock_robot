@@ -11,6 +11,7 @@
       .container-fluid
         .navbar-header
           .navbar-brand Stock Robot
+          = log_off_link
           - flash.each do |key, value|
             .flash
               = value
