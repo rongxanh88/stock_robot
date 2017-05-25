@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'haml'
 gem 'html2haml'
 gem 'pry'
+gem 'will_paginate', '~> 3.1.0'
 
 group :development, :test do
   gem 'capybara', '~> 2.13.0'

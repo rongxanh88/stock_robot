@@ -1,1 +1,12 @@
-Index of All Tickers
+%h2 All Stocks and ETFs
+%br
+.row
+  - @tickers.each do |ticker|
+    .ticker
+      %p
+      = link_to ticker.symbol, ticker_path(ticker)
+      %br
+      %p 
+      = ticker.description
+.page_links
+  = will_paginate @tickers

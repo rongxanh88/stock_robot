@@ -37,4 +37,10 @@ RSpec.feature "User", :type => :feature do
     expect(page).to have_content("Login Failed!")
     expect(page).to have_current_path(login_path)
   end
+
+  scenario "User attempts to access tickers without loggin in" do
+    visit (tickers_path)
+
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
 end
