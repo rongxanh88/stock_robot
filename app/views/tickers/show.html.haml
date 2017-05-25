@@ -1,1 +1,29 @@
-This is a single ticker
+.container-fluid
+  %h3
+  = "#{@ticker.symbol}: #{@ticker.description}"
+  .row
+    .col-md-12
+      - if @trading_data
+        %table.table-striped.table-bordered
+          %tr
+            %td Open:
+            %td Close:
+            %td High:
+          %tr
+            %td= @trading_data.open
+            %td= @trading_data.close
+            %td= @trading_data.high
+          %tr
+            %td Volume
+            %td Average Volume
+          %tr
+            %td= @trading_data.volume 
+            %td= @trading_data.avg_volume
+          %tr 
+            %td 52 Week High
+            %td 52 Week Low
+          %tr
+            %td= @trading_data.week_52_high
+            %td= @trading_data.week_52_low
+      - else
+        %p No Trading Data Available
