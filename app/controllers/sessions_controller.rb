@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:user][:password])
       flash[:message] = "Welcome to Stock Robot #{@user.email_address}!"
+      session[:user_id] = @user.id
       redirect_to tickers_path
     else
       flash[:message] = "Login Failed!"

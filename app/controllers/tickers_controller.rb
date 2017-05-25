@@ -1,2 +1,2 @@
-class TickersController < ApplicationController
+class TickersController < AuthenticatedController
 end
