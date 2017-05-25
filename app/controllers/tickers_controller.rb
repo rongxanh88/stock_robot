@@ -5,5 +5,6 @@ class TickersController < AuthenticatedController
 
   def show
     @ticker = Ticker.find(params[:id])
+    @trading_data = TradingData.find_by(ticker_id: @ticker.id)
   end
 end

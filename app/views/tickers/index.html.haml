@@ -1,12 +1,14 @@
 %h2 All Stocks and ETFs
 %br
-.row
-  - @tickers.each do |ticker|
-    .ticker
-      %p
-      = link_to ticker.symbol, ticker_path(ticker)
-      %br
-      %p 
-      = ticker.description
+.container-fluid
+  .row
+    - @tickers.each do |ticker|
+      .ticker.col-md-4
+        %p
+        = link_to ticker.symbol, ticker_path(ticker)
+        %br
+        %p 
+        = ticker.description
+%br
 .page_links
   = will_paginate @tickers
