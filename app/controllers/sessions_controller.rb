@@ -23,6 +23,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
+    flash[:message] = "Successfully logged out."
     redirect_to "/home"
   end
 
