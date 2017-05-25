@@ -5,7 +5,7 @@ RSpec.feature "User", :type => :feature do
     visit ("/home")
 
     click_on "Sign Up"
-    fill_in "user[email_address]", with: "bob@nomail.com"
+    fill_in "user[email_address]", with: "Bob@nomail.com"
     fill_in "user[password]", with: "password"
     click_on "Create Account"
 

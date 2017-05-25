@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.update_attributes(email_address: params[:user][:email_address].downcase)
     if @user.save
       flash[:message] = "User account creation successful!"
       redirect_to login_path

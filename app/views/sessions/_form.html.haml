@@ -1,5 +1,5 @@
 .session.form
-  = form_for (@user) do |f|
+  = form_for @user, url: login_path do |f|
     %p
     = f.label :email_address
     %br
