@@ -1,0 +1,9 @@
+%h2 All Security Types
+%br
+.container-fluid
+  .row
+    - @securities.each do |security|
+      .security.col-md-4
+        %p
+        = link_to security.security_type, security_tickers_path(security, security.tickers)
+        %br
