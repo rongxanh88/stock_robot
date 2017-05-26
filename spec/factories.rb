@@ -5,6 +5,8 @@ FactoryGirl.define do
     end
 
     password "password"
+
+    role 0
   end
 
   factory :historical_date do

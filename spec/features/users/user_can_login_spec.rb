@@ -43,4 +43,21 @@ RSpec.feature "User", :type => :feature do
 
     expect(page).to have_content("The page you were looking for doesn't exist.")
   end
+
+  scenario "Admin logs in" do
+    admin = create(:user, role: 1)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    visit(securities_path)
+
+    expect(page).to have_content("Create Security Type")
+  end
+
+  scenario "user cannot see admin content" do
+    skip
+    user = create(:user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    visit(securities_path)
+
+    expect(page).not_to have_content("Create Security Type")
+  end
 end

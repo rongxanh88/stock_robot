@@ -7,3 +7,6 @@
         %p
         = link_to security.security_type, security_tickers_path(security, security.tickers)
         %br
+  .row.security_links
+    - if current_admin?
+      = link_to "Create Security Type", new_admin_security_path

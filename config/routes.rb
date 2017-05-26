@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :tickers, only: [:index], module: "security"
   end
 
+  resources :securities, only: [:new, :create], as: "admin_security"
+
   get '/home', to: 'sessions#home'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

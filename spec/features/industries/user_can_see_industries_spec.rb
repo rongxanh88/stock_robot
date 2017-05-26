@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.feature "Industry", :type => :feature do
   scenario "User sees all industries" do
     user = create(:user)
-    visit ("/home")
     create_list(:industry, 5)
-
+    # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    visit ("/home")
     click_on("Login")
     fill_in "user[email_address]", with: user.email_address
     fill_in "user[password]", with: user.password
