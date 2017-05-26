@@ -1,0 +1,12 @@
+%h2 All Sectors
+%br
+.container-fluid
+  .row
+    - @sectors.each do |sector|
+      .sector.col-md-4
+        %p
+        = link_to sector.name, sector_tickers_path(sector, sector.tickers)
+        %br
+%br
+.page_links
+  = will_paginate @sectors
