@@ -26,6 +26,17 @@ RSpec.feature "Security", :type => :feature do
     expect(page).to have_content("Bond")
   end
 
+  scenario "admin edits security type" do
+    skip
+    visit (securities_path)
+
+    click_on("update_security_#{@security2.id}")
+    fill_in "security[security_type]", with: "Bond"
+    click_on("Update Security")
+
+    expect(page).to have_content("Bond")
+  end
+
   scenario "admin deletes security type" do
     visit (securities_path)
 

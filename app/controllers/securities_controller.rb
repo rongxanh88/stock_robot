@@ -20,6 +20,23 @@ class SecuritiesController < AuthenticatedController
     end
   end
 
+  def edit
+    @security = Security.find(params[:id])
+  end
+
+  def update
+    @security = Security.find(params[:id])
+    @security.update_attributes(security_params)
+    
+    if @security.save
+      flash[:message] = "Security Type Updated!"
+      redirect_to securities_path
+    else
+      flash[:message] = "Unable to make changes"
+      render :edit
+    end
+  end
+
   def destroy
     @security = Security.find(params[:id])
     @security.destroy
