@@ -28,11 +28,10 @@ RSpec.feature "Security", :type => :feature do
 
   scenario "admin deletes security type" do
     visit (securities_path)
-    binding.pry
-    within "security_#{@security2.id}" do
-      click_on "Delete"
-    end
+
+    click_on "del_security_#{@security2.id}"
 
     expect(page).not_to have_content("ETF")
+    expect(page).to have_content("Security Type Deleted!")
   end
 end

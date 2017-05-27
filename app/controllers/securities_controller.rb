@@ -20,6 +20,14 @@ class SecuritiesController < AuthenticatedController
     end
   end
 
+  def destroy
+    @security = Security.find(params[:id])
+    @security.destroy
+    flash[:message] = "Security Type Deleted!"
+
+    redirect_to securities_path
+  end
+
   private
 
   def security_params
