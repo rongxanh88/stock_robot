@@ -7,6 +7,10 @@
         %p
         = link_to security.security_type, security_tickers_path(security, security.tickers)
         %br
+        - if current_admin?
+          %p{class: "security_#{security.id}"} 
+            = link_to "Delete", admin_security_path(security), method: "delete"
   .row.security_links
     - if current_admin?
+      %p
       = link_to "Create Security Type", new_admin_security_path
