@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :securities, only: [:new, :create, :destroy, :edit, :update]
     resources :users, only: [:edit, :update, :destroy]
+    resources :sectors, only: [:new, :create, :destroy, :edit, :update]
+    resources :industries, only: [:new, :create, :destroy, :edit, :update]
   end
 
   get '/home', to: 'sessions#home'
