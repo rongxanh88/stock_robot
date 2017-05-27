@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def console
+    render file: "/public/404" unless current_admin?
   end
 
   def new

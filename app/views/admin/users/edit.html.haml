@@ -1,0 +1,20 @@
+.user.form
+  = form_for @user, :url => admin_user_path do |f|
+    %p
+    = f.label :email_address
+    %br
+    = f.text_field :email_address
+    %p
+    = f.label :password
+    %br
+    = f.text_field :password
+    %p
+    = f.label :role
+    %br
+    = f.label "Default"
+    = f.radio_button :role, "default"
+    = f.label "Admin"
+    = f.radio_button :role, "admin"
+    %p
+    = f.submit "Update Account"
+
