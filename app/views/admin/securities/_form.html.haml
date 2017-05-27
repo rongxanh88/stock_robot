@@ -1,5 +1,5 @@
 .container
-  = form_for @security do |f|
+  = form_for @security, :url => admin_securities_path do |f|
     %p
     = f.label :security_type     
     %br

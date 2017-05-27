@@ -4,6 +4,11 @@ class SessionsController < ApplicationController
 
   end
 
+  def console
+    @admin = current_user
+    @security = Security
+  end
+
   def new
     @user = User.new
   end

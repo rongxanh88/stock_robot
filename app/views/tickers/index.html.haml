@@ -12,3 +12,7 @@
 %br
 .page_links.apple_pagination
   = will_paginate @tickers
+%br
+- if current_admin?
+  %p
+    = link_to "Admin Console", console_path

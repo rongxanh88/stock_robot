@@ -1,0 +1,12 @@
+.container-fluid
+  .console_security
+    .row
+      %h3 Security Types
+      %br
+    .row
+      %p
+        = link_to "Create Security Type", new_admin_security_path
+      -#%p 
+      -#  = link_to "Edit", edit_admin_security_path(@admin, @security), id: "update_security_#{security.id}"
+      -#%p 
+      -#  = link_to "Delete", admin_security_path(@admin, @security), method: "delete", id: "del_security_#{security.id}"

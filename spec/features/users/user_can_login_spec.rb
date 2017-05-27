@@ -52,9 +52,9 @@ RSpec.feature "User", :type => :feature do
     fill_in "user[email_address]", with: admin.email_address.upcase
     fill_in "user[password]", with: admin.password
     click_on "Login"
-    visit(securities_path)
+    visit(tickers_path)
 
-    expect(page).to have_content("Create Security Type")
+    expect(page).to have_content("Admin Console")
   end
 
   scenario "user cannot see admin content" do
@@ -65,8 +65,8 @@ RSpec.feature "User", :type => :feature do
     fill_in "user[email_address]", with: user.email_address.upcase
     fill_in "user[password]", with: user.password
     click_on "Login"
-    visit(securities_path)
+    visit(tickers_path)
 
-    expect(page).not_to have_content("Create Security Type")
+    expect(page).not_to have_content("Admin Console")
   end
 end

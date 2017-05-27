@@ -16,10 +16,13 @@ Rails.application.routes.draw do
     resources :tickers, only: [:index], module: "security"
   end
 
-  resources :securities, only: [:new, :create, :destroy, :edit, :update], as: "admin_security"
+  namespace :admin do
+    resources :securities, only: [:new, :create, :destroy, :edit, :update]
+  end
 
   get '/home', to: 'sessions#home'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/login', to: 'sessions#destroy'
+  get '/console', to: 'sessions#console'
 end

@@ -4,8 +4,6 @@ RSpec.feature "Security", :type => :feature do
 
   before(:each) do
     @admin = create(:user, role: 1)
-    @security1 = create(:security)
-    @security2 = create(:security, security_type: "ETF")
 
     visit ("/home")
     click_on("Login")
@@ -14,7 +12,7 @@ RSpec.feature "Security", :type => :feature do
     click_on "Login"
   end
 
-  scenario "admin creates new security type" do
+  scenario "admin creates new user" do
     visit (securities_path)
 
     click_on("Create Security Type")
@@ -38,6 +36,7 @@ RSpec.feature "Security", :type => :feature do
   end
 
   scenario "admin deletes security type" do
+    skip
     visit (securities_path)
 
     click_on "del_security_#{@security2.id}"
