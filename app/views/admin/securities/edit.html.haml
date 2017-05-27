@@ -1,3 +1,10 @@
 %h3 Edit Security Type
 
-= render partial: "form"
+.container
+  = form_for @security, :url => admin_security_path do |f|
+    %p
+    = f.label :security_type     
+    %br
+    = f.text_field :security_type
+    %br
+    = f.submit

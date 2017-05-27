@@ -7,3 +7,8 @@
         %p
         = link_to security.security_type, security_tickers_path(security, security.tickers)
         %br
+        - if current_user.admin?
+          %p 
+            = link_to "Edit", edit_admin_security_path(security), id: "edit_security_#{security.id}"
+          %p 
+            = link_to "Delete", admin_security_path(security), method: "delete", id: "del_security_#{security.id}"

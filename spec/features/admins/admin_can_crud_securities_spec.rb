@@ -15,22 +15,21 @@ RSpec.feature "Security", :type => :feature do
   end
 
   scenario "admin creates new security type" do
-    skip
     visit (console_path)
 
-    click_on("New Security")
+    click_on("Create Security Type")
     fill_in "security[security_type]", with: "Bond"
     click_on("Create Security")
+
     expect(page).to have_content(@security1.security_type)
     expect(page).to have_content(@security2.security_type)
     expect(page).to have_content("Bond")
   end
 
   scenario "admin edits security type" do
-    skip
-    visit (console_path)
+    visit (securities_path)
 
-    click_on("update_security_#{@security2.id}")
+    click_on("edit_security_#{@security2.id}")
     fill_in "security[security_type]", with: "Bond"
     click_on("Update Security")
 
@@ -38,8 +37,7 @@ RSpec.feature "Security", :type => :feature do
   end
 
   scenario "admin deletes security type" do
-    skip
-    visit (console_path)
+    visit (securities_path)
 
     click_on "del_security_#{@security2.id}"
 

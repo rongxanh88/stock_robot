@@ -1,12 +1,9 @@
 class SessionsController < ApplicationController
 
   def home
-
   end
 
   def console
-    @admin = current_user
-    @security = Security
   end
 
   def new
