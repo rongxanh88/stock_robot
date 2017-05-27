@@ -46,16 +46,25 @@ RSpec.feature "User", :type => :feature do
 
   scenario "Admin logs in" do
     admin = create(:user, role: 1)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    visit ("/home")
+    click_on("Login")
+    fill_in "user[email_address]", with: admin.email_address.upcase
+    fill_in "user[password]", with: admin.password
+    click_on "Login"
     visit(securities_path)
 
     expect(page).to have_content("Create Security Type")
   end
 
   scenario "user cannot see admin content" do
-    skip
     user = create(:user)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    visit ("/home")
+    click_on("Login")
+    fill_in "user[email_address]", with: user.email_address.upcase
+    fill_in "user[password]", with: user.password
+    click_on "Login"
     visit(securities_path)
 
     expect(page).not_to have_content("Create Security Type")
