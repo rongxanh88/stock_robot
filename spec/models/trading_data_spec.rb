@@ -12,12 +12,12 @@ RSpec.describe TradingData, type: :model do
   end
 
   describe "relationships" do
-    it "belongs to ticker" do
+    it "has one ticker" do
       td = create(:trading_data)
       expect(td).to respond_to(:ticker)
     end
 
-    it "belongs to historical date" do
+    it "has one historical date" do
       td = create(:trading_data)
       expect(td).to respond_to(:historical_date)
     end

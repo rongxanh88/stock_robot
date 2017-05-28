@@ -7,14 +7,14 @@ RSpec.describe Ticker, type: :model do
   end
 
   describe "relationships" do
-    it "has many trading data" do
+    it "has one trading data" do
       ticker = create(:ticker)
       expect(ticker).to respond_to(:trading_data)
     end
 
-    it "has many historical dates" do
+    it "has one historical date" do
       ticker = create(:ticker)
-      expect(ticker).to respond_to(:historical_dates)
+      expect(ticker).to respond_to(:historical_date)
     end
   end
 end

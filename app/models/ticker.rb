@@ -1,9 +1,9 @@
 class Ticker < ApplicationRecord
-  # belongs_to :sector
-  # belongs_to :industry
-  # belongs_to :security
-  has_many :trading_data
-  has_many :historical_dates, through: :trading_data
+  has_one :trading_data
+  has_one :historical_date, through: :trading_data
+
+  has_many :ticker_tags
+  has_many :tags, through: :ticker_tags
 
   validates :symbol, :description, presence: true
 end

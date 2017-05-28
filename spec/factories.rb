@@ -1,4 +1,15 @@
 FactoryGirl.define do
+  factory :ticker_tag do
+    association :ticker, factory: :ticker
+    association :tag, factory: :tag
+  end
+
+  factory :tag do
+    sequence :title do |n|
+      "Title#{n}"
+    end
+  end
+
   factory :user do
     sequence :email_address do |n|
       "person#{n}@mail.com"
@@ -10,9 +21,7 @@ FactoryGirl.define do
   end
 
   factory :historical_date do
-    sequence :date do |n|
-      "#{DateTime.new + n}"
-    end
+    date "most recent day"
   end
 
   factory :security do

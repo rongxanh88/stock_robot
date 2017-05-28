@@ -6,14 +6,14 @@ RSpec.describe HistoricalDate, type: :model do
   end
 
   describe "relationships" do
-    it "has many trading data" do
+    it "has one trading data" do
       date = create(:historical_date)
       expect(date).to respond_to(:trading_data)
     end
 
-    it "has many tickers" do
+    it "has one tickers" do
       date = create(:historical_date)
-      expect(date).to respond_to(:tickers)
+      expect(date).to respond_to(:ticker)
     end
   end
 end
