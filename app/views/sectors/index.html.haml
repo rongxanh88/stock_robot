@@ -5,8 +5,11 @@
     - @sectors.each do |sector|
       .sector.col-md-4
         %p
-        = link_to sector.name, sector_tickers_path(sector, sector.tickers)
-        %br
+          = link_to sector.name, sector_tickers_path(sector, sector.tickers)
+        %p 
+          - if current_admin?
+            = link_to "Edit", edit_admin_sector_path(sector), id: "edit_sector_#{sector.id}"
+            = link_to "Delete", admin_sector_path(sector), method: "delete", id: "del_sector_#{sector.id}"
 %br
 .page_links.apple_pagination
   = will_paginate @sectors
