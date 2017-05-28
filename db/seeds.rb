@@ -70,8 +70,8 @@ class Seed
         )
     ticker = Ticker.find_by(symbol: quote["symbol"])
     ticker.update_attributes(security_id: security.id)
-    date = HistoricalDate.find_or_create_by(date: DateTime.now.to_date)
-    trading_data = TradingData.create!(
+    date = HistoricalDate.find_or_create_by(date: "most recent trading day")
+    TradingData.create!(
       ticker_id: ticker.id, historical_date_id: date.id, open: quote["open"],
       high: quote["high"], close: quote["close"], volume: quote["volume"],
       avg_volume: quote["average_volume"], week_52_high: quote["week_52_high"],
@@ -82,3 +82,5 @@ class Seed
 end
 
 Seed.quote_request
+
+# report.first["results"].first["tables"]["financial_statements_restate"]["cash_flow_statement"].first
