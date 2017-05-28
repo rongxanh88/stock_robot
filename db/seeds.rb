@@ -53,7 +53,7 @@ class Seed
 
   def self.make_json_request(ticker_symbols="")
     quoter = Quote.new
-    json = quoter.get_quote(ticker_symbols)
+    json = quoter.get_report(ticker_symbols)
     quotes = json["quotes"]["quote"]
     quotes.each do |quote|
       fill_tables(quote)
