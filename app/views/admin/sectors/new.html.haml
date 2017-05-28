@@ -1,0 +1,8 @@
+%h3 Create a New Sector
+%br
+= form_for @sector, :url => admin_sectors_path do |f|
+  %p 
+    = f.label :name
+    = f.text_field :name 
+  %br
+  = f.submit
