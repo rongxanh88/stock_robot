@@ -10,8 +10,10 @@ class TickersController < AuthenticatedController
 
   def update
     @ticker = Ticker.find(params[:id])
-    binding.pry
-    @ticker.tags.create(tag_params)
+    @ticker.update_attributes(tag_params)
+    @ticker.save
+    
+    redirect_to ticker_path(@ticker)
   end
 
   private
