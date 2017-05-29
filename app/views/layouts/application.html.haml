@@ -7,12 +7,29 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %nav.navbar.navbar-default.navbar-fixed-top
+    %nav.navbar.navbar-inverse
       .container-fluid
         .navbar-header
           .navbar-brand Stock Robot
-          = log_off_link
-          - flash.each do |key, value|
-            .flash
-              = value
-        = yield
+        %ul.nav.navbar-nav
+          %li
+            = link_to "Home", tickers_path
+          %li
+            = link_to "Sectors", sectors_path
+          %li
+            = link_to "Industries", industries_path
+          %li
+            = link_to "Security Types", securities_path
+          %li
+            = link_to "Tags", tags_path
+          %li
+            = log_off_link
+          - if current_admin?
+            %li
+              = link_to "Admin Console", console_path
+          %li
+            - flash.each do |key, value|
+              .flash
+                = value
+  .container-fluid
+    = yield

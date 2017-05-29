@@ -5,14 +5,9 @@
     - @tickers.each do |ticker|
       .ticker.col-md-4
         %p
-        = link_to ticker.symbol, ticker_path(ticker)
-        %br
+          = link_to ticker.symbol, ticker_path(ticker), class: "btn btn-info btn-large"
         %p 
-        = ticker.description
+          = ticker.description
 %br
 .page_links.apple_pagination
   = will_paginate @tickers
-%br
-- if current_admin?
-  %p
-    = link_to "Admin Console", console_path

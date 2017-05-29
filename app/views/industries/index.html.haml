@@ -5,11 +5,11 @@
     - @industries.each do |industry|
       .industry.col-md-4
         %p
-          = link_to industry.name, industry_tickers_path(industry, industry.tickers)
+          = link_to industry.name, industry_tickers_path(industry, industry.tickers), class: "category-link"
         %p
           - if current_admin?
-            = link_to "Edit", edit_admin_industry_path(industry), id: "edit_industry_#{industry.id}"
-            = link_to "Delete", admin_industry_path(industry), method: "delete", id: "del_industry_#{industry.id}"
+            = link_to "Edit", edit_admin_industry_path(industry), id: "edit_industry_#{industry.id}", class: "btn btn-sm btn-warning"
+            = link_to "Delete", admin_industry_path(industry), method: "delete", id: "del_industry_#{industry.id}", class: "btn btn-sm btn-danger"
 %br
 .page_links.apple_pagination
   = will_paginate @industries

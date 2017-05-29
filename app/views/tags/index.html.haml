@@ -3,9 +3,9 @@
 .container-fluid
   .row
     - @tags.each do |tag|
-      .tag.col-md-12
+      .col-md-4
         %p
-          = link_to tag.title, tag_tickers_path(tag)
+          = link_to tag.title, tag_tickers_path(tag), class: "category-link"
         %p 
-          = link_to "Edit", edit_tag_path(tag), id: "edit_tag_#{tag.id}"
-          = link_to "Delete", tag_path(tag), method: "delete", id: "del_tag_#{tag.id}"
+          = link_to "Edit", edit_tag_path(tag), id: "edit_tag_#{tag.id}", class: "btn btn-sm btn-warning"
+          = link_to "Delete", tag_path(tag), method: "delete", id: "del_tag_#{tag.id}", class: "btn btn-sm btn-danger"
