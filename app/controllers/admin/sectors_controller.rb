@@ -1,4 +1,5 @@
 class Admin::SectorsController < AuthenticatedController
+  before_action :set_sector, only: [:edit, :update, :destroy]
 
   def new
     @sector = Sector.new
@@ -16,11 +17,9 @@ class Admin::SectorsController < AuthenticatedController
   end
 
   def edit
-    @sector = Sector.find(params[:id])
   end
 
   def update
-    @sector = Sector.find(params[:id])
     @sector.update_attributes(sector_params)
 
     if @sector.save
@@ -34,7 +33,6 @@ class Admin::SectorsController < AuthenticatedController
   end
 
   def destroy
-    @sector = Sector.find(params[:id])
     flash[:message] = "Sector deleted!"
     @sector.destroy
     redirect_to sectors_path
@@ -44,5 +42,9 @@ class Admin::SectorsController < AuthenticatedController
 
   def sector_params
     params.require(:sector).permit(:name)
+  end
+
+  def set_sector
+    @sector = Sector.find(params[:id])
   end
 end

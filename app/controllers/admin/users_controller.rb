@@ -1,11 +1,10 @@
 class Admin::UsersController < AuthenticatedController
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     @user.update_attributes(user_params)
     
     if @user.save
@@ -18,7 +17,6 @@ class Admin::UsersController < AuthenticatedController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     flash[:message] = "User Deleted!"
 
@@ -29,5 +27,9 @@ class Admin::UsersController < AuthenticatedController
 
   def user_params
     params.require(:user).permit(:email_address, :password, :role)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

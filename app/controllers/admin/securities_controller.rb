@@ -1,4 +1,6 @@
 class Admin::SecuritiesController < AuthenticatedController
+  before_action :set_security, only: [:edit, :update, :destroy]
+
   def new
     @security = Security.new
   end
@@ -16,11 +18,9 @@ class Admin::SecuritiesController < AuthenticatedController
   end
 
   def edit
-    @security = Security.find(params[:id])
   end
 
   def update
-    @security = Security.find(params[:id])
     @security.update_attributes(security_params)
     
     if @security.save
@@ -33,7 +33,6 @@ class Admin::SecuritiesController < AuthenticatedController
   end
 
   def destroy
-    @security = Security.find(params[:id])
     @security.destroy
     flash[:message] = "Security Type Deleted!"
 
@@ -44,5 +43,9 @@ class Admin::SecuritiesController < AuthenticatedController
 
   def security_params
     params.require(:security).permit(:security_type)
+  end
+
+  def set_security
+    @security = Security.find(params[:id])
   end
 end

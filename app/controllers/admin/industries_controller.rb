@@ -1,4 +1,5 @@
 class Admin::IndustriesController < AuthenticatedController
+  before_action :set_industry, only: [:edit, :update, :destroy]
 
   def new
     @industry = Industry.new
@@ -17,11 +18,9 @@ class Admin::IndustriesController < AuthenticatedController
   end
 
   def edit
-    @industry = Industry.find(params[:id])
   end
 
   def update
-    @industry = Industry.find(params[:id])
     @industry.update_attributes(industry_params)
 
     if @industry.save
@@ -34,7 +33,6 @@ class Admin::IndustriesController < AuthenticatedController
   end
 
   def destroy
-    @industry = Industry.find(params[:id])
     flash[:message] = "#{@industry.name} deleted!"
     @industry.destroy
 
@@ -46,4 +44,9 @@ class Admin::IndustriesController < AuthenticatedController
   def industry_params
     params.require(:industry).permit(:name)
   end
+
+  def set_industry
+    @industry = Industry.find(params[:id])
+  end
+
 end
