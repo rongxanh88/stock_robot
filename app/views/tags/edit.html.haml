@@ -1,0 +1,9 @@
+%h3 Edit
+= @tag.title
+%br
+= form_for @tag do |f|
+  %p 
+    = f.label :title
+    = f.text_field :title 
+  %br
+  = f.submit

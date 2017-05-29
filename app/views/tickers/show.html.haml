@@ -3,8 +3,7 @@
   = "#{@ticker.symbol}: #{@ticker.description}"
   %h6 Tags 
   %p 
-    - @ticker.tags.each do |tag|
-      = tag.title
+    = @ticker.tag_list
   %p
     = render partial: "form"
   .row

@@ -1,27 +1,22 @@
-class TagsController < ApplicationController
+class TagsController < AuthenticatedController
 
-  def new
-    # @ticker = Ticker.find(params[:ticker_id])
-    # @tag = Tag.new
+  def index
+    @tags = Tag.all
   end
 
-  def create
-    # @ticker = Ticker.find(params[:ticker_id])
-    # @tag = Tag.new(tag_params)
+  def edit
+    @tag = Tag.find(params[:id])
+  end
 
-    # if @tag.save
-    #   flash[:message] = "Tag(s) created!"
-    #   redirect_to ticker_path(@ticker)
-    # else
-    #   flash[:message] = "Tag Creation Unsuccessful"
-    #   render :new
-    # end
+  def update
+    @tag = Tag.find(params[:id])
+    @tag.update_attributes(tag_params)
+
+    redirect_to tags_path
   end
 
   def destroy
-    # session.clear
-    # flash[:message] = "Successfully logged out."
-    # redirect_to "/home"
+
   end
 
   private

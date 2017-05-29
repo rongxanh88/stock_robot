@@ -8,7 +8,6 @@ class Ticker < ApplicationRecord
   validates :symbol, :description, presence: true
 
   def tag_list=(tag_string)
-    binding.pry
     tag_names = tag_string.split(",")
                           .collect{|word| word.strip.downcase}
                           .uniq

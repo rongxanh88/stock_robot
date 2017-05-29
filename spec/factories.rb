@@ -46,6 +46,8 @@ FactoryGirl.define do
     end
 
     description "AAA company"
+
+    tag_list ""
   end
 
   factory :trading_data do

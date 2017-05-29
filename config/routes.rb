@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   root 'sessions#home'
 
   resources :users, only: [:new, :create]
-  
   resources :tickers, only: [:index, :show, :update]
+
+  resources :tags, only: [:index, :edit, :update, :destroy] do
+    resources :tickers, only: [:index], module: "tag"
+  end
 
   resources :sectors, only: [:index] do
     resources :tickers, only: [:index], module: "sector"

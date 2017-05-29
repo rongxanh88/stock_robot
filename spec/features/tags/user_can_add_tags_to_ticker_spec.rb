@@ -16,11 +16,33 @@ RSpec.feature "Tag", :type => :feature do
     ticker = create(:ticker)
 
     visit (ticker_path(ticker))
-    
     fill_in "ticker[tag_list]", with: "ruby on rails"
     click_on("Update Ticker")
 
     expect(page).to have_current_path(ticker_path(ticker))
-    expect(page).to have_content("Tag(s) created!")
+    expect(page).to have_content("ruby on rails")
+  end
+
+  scenario "User can create multiple tags for a ticker" do
+    ticker = create(:ticker)
+
+    visit (ticker_path(ticker))
+    fill_in "ticker[tag_list]", with: "hot company, bull run, must buy"
+    click_on("Update Ticker")
+
+    expect(page). to have_content("hot company, bull run, must buy")
+  end
+
+  scenario "user can remove tags from a ticker" do
+    ticker = create(:ticker)
+    ticker.update_attributes(tag_list: "hot company")
+    
+    visit (ticker_path(ticker))
+    expect(page).to have_content("hot company")
+
+    fill_in "ticker[tag_list]", with: ""
+    click_on("Update Ticker")
+
+    expect(page).not_to have_content("hot company")
   end
 end
