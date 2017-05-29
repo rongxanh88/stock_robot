@@ -1,4 +1,10 @@
 FactoryGirl.define do
+
+  factory :cash_flow_statement do
+    association :ticker, factory: :ticker
+    association :historical_date, factory: :historical_date
+  end
+
   factory :ticker_tag do
     association :ticker, factory: :ticker
     association :tag, factory: :tag

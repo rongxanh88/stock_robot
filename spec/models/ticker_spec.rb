@@ -16,5 +16,20 @@ RSpec.describe Ticker, type: :model do
       ticker = create(:ticker)
       expect(ticker).to respond_to(:historical_date)
     end
+
+    it "has many ticker tags" do
+      ticker = create(:ticker)
+      expect(ticker).to respond_to(:ticker_tags)
+    end
+
+    it "has many tags" do
+      ticker = create(:ticker)
+      expect(ticker).to respond_to(:tags)
+    end
+
+    it "has many cash flow statements" do
+      ticker = create(:ticker)
+      expect(ticker).to respond_to(:cash_flow_statements)
+    end
   end
 end
