@@ -5,6 +5,8 @@ class Ticker < ApplicationRecord
   has_many :ticker_tags, dependent: :destroy
   has_many :tags, through: :ticker_tags
 
+  has_many :cash_flow_statements
+
   validates :symbol, :description, presence: true
 
   def tag_list=(tag_string)
