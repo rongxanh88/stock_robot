@@ -79,13 +79,13 @@ end
 class SeedFinancialData
 
   def self.quote_request
-    tickers = Ticker.all
     symbols = []
-    tickers.each do |ticker|
+    Ticker.find_each(batch_size: 50) do |ticker|
       symbols << ticker.symbol
-
+      binding.pry
       if symbols.count >= 50
         fill_financial_data(symbols)
+        symbols.clear
       end
     end
   end
@@ -96,16 +96,29 @@ class SeedFinancialData
     symbols.join(",")
   end
 
-  def make_json_request(symbol_param)
-    
-  end
-
   def self.fill_financial_data(symbols)
     symbol_string = symbols_to_string(symbols)
     make_json_request(symbol_string)
   end
+
+  def make_json_request(symbol_param="")
+    reporter = Finance.new
+    json = reporter.get_report(ticker_symbols)
+    reports = json
+    reports.each do |report|
+      binding.pry
+      statement = report["results"].first["tables"]["financial_statements_restate"]["cash_flow_statement"].first
+      fill_tables(statement)
+    end
+  end
+
+  def fill_tables(statement)
+    binding.pry
+  end
+
 end
 
 # SeedBasic.quote_request
+SeedFinancialData.quote_request
 
 # report.first["results"].first["tables"]["financial_statements_restate"]["cash_flow_statement"].first
