@@ -105,8 +105,15 @@ class SeedFinancialData
     reports = json
     reports.each do |report|
       ticker = Ticker.find_by(symbol: report["request"])
-      statement = report["results"].first["tables"]["financial_statements_restate"]["cash_flow_statement"].first
-      fill_tables(statement, ticker)
+
+      begin
+        statement = report["results"].first["tables"]["financial_statements_restate"]["cash_flow_statement"].first
+        fill_tables(statement, ticker)
+      rescue => exception
+        next
+      else
+        next
+      end
     end
   end
 
@@ -158,6 +165,7 @@ class SeedFinancialData
         sale_of_investment: data["sale_of_investment"],
         stock_based_compensation: data["stock_based_compensation"]
       )
+      puts "#{ticker.symbol} seeded"
     end
   end
 
