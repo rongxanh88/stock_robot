@@ -1,9 +1,0 @@
-%h3 Create New Tags
-%br
-.tag
-  = form_for [@ticker, @tag] do |f|
-    %p 
-      = f.label :title
-      = f.text_field :title 
-    %br
-    = f.submit

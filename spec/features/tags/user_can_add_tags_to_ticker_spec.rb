@@ -17,9 +17,8 @@ RSpec.feature "Tag", :type => :feature do
 
     visit (ticker_path(ticker))
     
-    click_on("Create Tags")
-    fill_in "tag[title]", with: "ruby on rails"
-    click_on("Create Tag")
+    fill_in "ticker[tag_list]", with: "ruby on rails"
+    click_on("Update Ticker")
 
     expect(page).to have_current_path(ticker_path(ticker))
     expect(page).to have_content("Tag(s) created!")

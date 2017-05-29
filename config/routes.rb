@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   
-  resources :tickers, only: [:index, :show] do
-    resources :tags, only: [:new, :create]
-  end
+  resources :tickers, only: [:index, :show, :update]
 
   resources :sectors, only: [:index] do
     resources :tickers, only: [:index], module: "sector"

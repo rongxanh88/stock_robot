@@ -6,4 +6,20 @@ class Ticker < ApplicationRecord
   has_many :tags, through: :ticker_tags
 
   validates :symbol, :description, presence: true
+
+  def tag_list=(tag_string)
+    tag_names = tag_string.split(",")
+                          .collect{|word| word.strip.downcase}
+                          .uniq
+    tags = tag_names.collect {|tag| Tag.find_or_create_by(title: tag)}
+    self.tags = tags
+  end
+
+  def tag_list
+    tags.join(", ")
+  end
+
+  def to_s
+    title
+  end
 end

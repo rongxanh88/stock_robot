@@ -3,9 +3,10 @@
   = "#{@ticker.symbol}: #{@ticker.description}"
   %h6 Tags 
   %p 
-    
-  %p 
-    = link_to "Create Tags", new_ticker_tag_path(@ticker)
+    - @ticker.tags.each do |tag|
+      = tag.title
+  %p
+    = render partial: "form"
   .row
     .col-md-12
       - if @trading_data
