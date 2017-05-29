@@ -8,5 +8,4 @@
           = link_to tag.title, tag_tickers_path(tag)
         %p 
           = link_to "Edit", edit_tag_path(tag), id: "edit_tag_#{tag.id}"
-        -#  %p 
-        -#    = link_to "Delete", admin_security_path(security), method: "delete", id: "del_security_#{security.id}"
+          = link_to "Delete", tag_path(tag), method: "delete", id: "del_tag_#{tag.id}"
