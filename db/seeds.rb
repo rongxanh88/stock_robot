@@ -5,12 +5,7 @@ require './app/models/security'
 require './app/models/historical_date'
 require './app/models/trading_data'
 
-class Seed
-  attr_reader :RATE_LIMIT
-
-  def initialize
-    @RATE_LIMIT = 119
-  end
+class SeedBasic
 
   def self.quote_request
     file = "db/csv/complete_stock_ticker.csv"
@@ -81,6 +76,36 @@ class Seed
 
 end
 
-Seed.quote_request
+class SeedFinancialData
+
+  def self.quote_request
+    tickers = Ticker.all
+    symbols = []
+    tickers.each do |ticker|
+      symbols << ticker.symbol
+
+      if symbols.count >= 50
+        fill_financial_data(symbols)
+      end
+    end
+  end
+
+  private
+
+  def self.symbols_to_string(symbols=[])
+    symbols.join(",")
+  end
+
+  def make_json_request(symbol_param)
+    
+  end
+
+  def self.fill_financial_data(symbols)
+    symbol_string = symbols_to_string(symbols)
+    make_json_request(symbol_string)
+  end
+end
+
+# SeedBasic.quote_request
 
 # report.first["results"].first["tables"]["financial_statements_restate"]["cash_flow_statement"].first
