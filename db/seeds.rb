@@ -9,7 +9,8 @@ require './app/models/trading_data'
 class SeedBasic
 
   def self.quote_request
-    file = "db/csv/complete_stock_ticker.csv"
+    # file = "db/csv/complete_stock_ticker.csv"
+    file = "db/csv/stock_fixture.csv"
 
     counter = 0
     ticker_symbols = []
@@ -171,5 +172,5 @@ class SeedFinancialData
 
 end
 
-# SeedBasic.quote_request
+SeedBasic.quote_request
 SeedFinancialData.quote_request
