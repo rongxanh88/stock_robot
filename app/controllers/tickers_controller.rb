@@ -16,6 +16,17 @@ class TickersController < AuthenticatedController
     redirect_to ticker_path(@ticker)
   end
 
+  def search
+    ticker = Ticker.find_by(symbol: params[:symbol])
+
+    if ticker
+      redirect_to ticker_path(ticker)
+    else
+      flash[:message] = "Stock symbol not found."
+      redirect_to tickers_path
+    end
+  end
+
   private
 
   def tag_params
