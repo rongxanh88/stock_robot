@@ -1,0 +1,5 @@
+= form_tag(ticker_path(@tickers[0]), method: "get") do |f|
+  %p 
+    = f.label :symbol
+    = f.text_field :symbol
+    = f.submit "Search"
