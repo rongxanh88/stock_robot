@@ -6,7 +6,7 @@ class TradierAPI
   attr_reader :endpoint
 
   KEY = {
-      :api => ENV[“TRADIER_API_KEY”]
+      :api => ENV['TRADIER_API_KEY']
   }
 
   def initialize(endpoint)
